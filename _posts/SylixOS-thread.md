@@ -28,20 +28,22 @@ categories: SylixOS
 ##线程优先级
 线程优先级的范围处决于操作系统的配置，默认是0~255，0是最高优先级，255是最低优先级:
 
-     #define LW_PRIO_HIGHEST         0                                       /*  SylixOS 最高优先级          */
-     #define LW_PRIO_LOWEST          255                                     /*  SylixOS 最低优先级          */
+```
+#define LW_PRIO_HIGHEST         0                                       /*  SylixOS 最高优先级          */
+#define LW_PRIO_LOWEST          255                                     /*  SylixOS 最低优先级          */
+
+/*********************************************************************************************************
+    优先级 (一般应用的最高优先级不能高于 LW_PRIO_CRITICAL 最低不能低过 LW_PRIO_LOW)
+*********************************************************************************************************/
      
-     /*********************************************************************************************************
-       优先级 (一般应用的最高优先级不能高于 LW_PRIO_CRITICAL 最低不能低过 LW_PRIO_LOW)
-     *********************************************************************************************************/
-     
-     #define LW_PRIO_EXTREME         LW_PRIO_HIGHEST                         /*  最高优先级                  */
-     #define LW_PRIO_CRITICAL        50                                      /*  关键处理任务                */
-     #define LW_PRIO_REALTIME        100                                     /*  实时处理任务                */
-     #define LW_PRIO_HIGH            150                                     /*  高优先级任务                */
-     #define LW_PRIO_NORMAL          200                                     /*  正常优先级                  */
-     #define LW_PRIO_LOW             250                                     /*  低优先级                    */
-     #define LW_PRIO_IDLE            LW_PRIO_LOWEST                          /*  最低优先级                  */
+#define LW_PRIO_EXTREME         LW_PRIO_HIGHEST                         /*  最高优先级                  */
+#define LW_PRIO_CRITICAL        50                                      /*  关键处理任务                */
+#define LW_PRIO_REALTIME        100                                     /*  实时处理任务                */
+#define LW_PRIO_HIGH            150                                     /*  高优先级任务                */
+#define LW_PRIO_NORMAL          200                                     /*  正常优先级                  */
+#define LW_PRIO_LOW             250                                     /*  低优先级                    */
+#define LW_PRIO_IDLE            LW_PRIO_LOWEST                          /*  最低优先级                  */
+```
 
 ##线程调度策略
 SylixOS支持同优先级线程，同优先级线程的调度策略取决于当前线程的调度策略，如果当前线程的调度策略为先来先服务（FIFO），
@@ -50,8 +52,10 @@ SylixOS支持同优先级线程，同优先级线程的调度策略取决于当�
 
 则当当前线程的时间片用完时或当前线程的阻塞时，同优先级的其它线程才有机会运行。
 
-     #define  LW_OPTION_SCHED_FIFO                           0x01            /*  调度器 FIFO                 */
-     #define  LW_OPTION_SCHED_RR                             0x00            /*  调度器 RR                   */
+```
+#define  LW_OPTION_SCHED_FIFO                           0x01            /*  调度器 FIFO                 */
+#define  LW_OPTION_SCHED_RR                             0x00            /*  调度器 RR                   */
+```
 
 ##线程相关 API
 SylixOS 提供了一套 POSIX 线程 API，其接口定义和行为完全符合 POSIX 线程标准，方便了现有 POSIX 程序移植到 SylixOS 上，
@@ -64,39 +68,48 @@ SylixOS 系统内部线程 API 的命名一般以 API_Thread 开始，API 的声
 
 ##内部线程 API 相关的数据类型
 
-     线程句柄  LW_OBJECT_HANDLE
-     线程 ID   LW_OBJECT_ID
-     线程属性  LW_CLASS_THREADATTR，*PLW_CLASS_THREADATTR
-     线程函数  PTHREAD_START_ROUTINE
+```
+线程句柄  LW_OBJECT_HANDLE
+线程 ID   LW_OBJECT_ID
+线程属性  LW_CLASS_THREADATTR，*PLW_CLASS_THREADATTR
+线程函数  PTHREAD_START_ROUTINE
+```
 
 其中 线程函数 PTHREAD_START_ROUTINE 的类型需要理解，它被定义为如下的函数指针：
 
-     typedef PVOID       (*PTHREAD_START_ROUTINE)(PVOID pvArg);              /*  系统线程类型定义            */
+```
+typedef PVOID       (*PTHREAD_START_ROUTINE)(PVOID pvArg);              /*  系统线程类型定义            */
+```
 
 所以线程函数一般形如：
 
-     PVOID  thread_func (PVOID pvArg)
-     {
-        // do thing...
-        return  NULL;
-     }
+```
+PVOID  thread_func (PVOID pvArg)
+{
+    // do thing...
+    return  NULL;
+}
+```
 
 ##一分钟实验
 
-     #include <SylixOS.h> // 包含 SylixOS.h 头文件
-     
-     /*
-      * 测试用线程函数
-      */
-     PVOID  TestThread (PVOID  pvArg)
-     {
-     	while (1) {
+```
+
+#include <SylixOS.h> // 包含 SylixOS.h 头文件
+  
+/*
+  * 测试用线程函数
+ */
+PVOID  TestThread (PVOID  pvArg)
+{
+    while (1) {
      		printf("hello in thread\n");
      		sleep(1);
-     	}
-     }
+    }
+}
      
-     LW_OBJECT_HANDLE  hThread; // 定义线程句柄
+LW_OBJECT_HANDLE  hThread; // 定义线程句柄
       
-     hThread = API_ThreadCreate("t_test", TestThread, NULL, NULL); // 创建一个名为 t_test 的线程，线程函数为 TestThread，使用默认的线程属性，不接收线程 ID
+hThread = API_ThreadCreate("t_test", TestThread, NULL, NULL); // 创建一个名为 t_test 的线程，线程函数为 TestThread，使用默认的线程属性，不接收线程 ID
+```
 
