@@ -1,6 +1,7 @@
 title: 分享一些 SylixOS 开源项目
 date: 2015-06-09 16:21:15
-tags:
+tag: SylixOS
+categories: SylixOS
 ---
 
 1. 图片类
