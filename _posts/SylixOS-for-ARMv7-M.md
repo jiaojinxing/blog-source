@@ -1,7 +1,10 @@
 title: SylixOS for ARMv7-M
 date: 2015-06-19 11:22:13
-tag: SylixOS
-categories: SylixOS
+tag: 
+- SylixOS 
+- ARMv7-M
+categories: 
+- SylixOS 
 ---
 
 最初 SylixOS 在 ARM7 上跑，后来更高级的 ARM 处理器开始变得流行，这些高级的 ARM 处理器一般带有 MMU(内存管理单元)和 Cache(高速缓存)。
@@ -29,6 +32,10 @@ https://github.com/jiaojinxing/sylixos-base-ARMv7m
 Qemu 的地址：
 
 https://github.com/beckus/qemu_stm32
+
+BSP 的地址：
+
+https://github.com/jiaojinxing/bspstm32
 
 由于 SylixOS 默认的配置对内存的消耗比较大，所以我们修改了 Qemu 的代码，调整 stm32-p103 开发板的 Flash 空间大小为 8 MByte、SDRAM 空间大小为 64 MByte。
 
@@ -107,3 +114,7 @@ threadpool  1        0        0
 
 STM32F429I-DISCO 开发板用户手册：
 http://www.st.com/st-web-ui/static/active/cn/resource/technical/document/user_manual/DM00092920.pdf
+
+2015/6/20 日追加：
+
+SylixOS 创始人韩辉也表示了极大的关注！SylixOS Lite 已经着手开发，SylixOS Lite 直接在 SylixOS 主线的基础上进行裁减，移除 GDB 调试、动态装载、符号表、SIGNAL 信号等对内存和 Flash 消耗较大的功能特性，但保留 POSIX 层，其它功能特性（如 IO 系统、文件、TCP/IP 网络）依然齐全。SylixOS Lite 的 .text 段会降低到 700K 以内，.data + .bss 段则会降低到 400K 以内，也就是说，在资源丰富的 Cortex-M4 和 M7 芯片上不外扩 SDRAM 也能跑 SylixOS 了！

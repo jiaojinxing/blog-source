@@ -7,6 +7,27 @@ Markdown 语法：http://wowubuntu.com/markdown/（中文）
 
 github page 博客不支持的 Markdown 编辑器语法有: 注脚、flow 流程图、seq 序列图
 
+
+表格语法：
+
+```
+|宏名	                    |含义|
+|---                        |:---|
+|LW_OPTION_NOT_WAIT	        |不等待立即退出|
+|LW_OPTION_WAIT_INFINITE	|永远等待|
+|LW_OPTION_WAIT_A_TICK	    |等待一个时钟嘀嗒|
+|LW_OPTION_WAIT_A_SECOND	|等待一秒|
+```
+
+表格效果：
+
+|宏名	                    |含义|
+|---                        |:---|
+|LW_OPTION_NOT_WAIT	        |不等待立即退出|
+|LW_OPTION_WAIT_INFINITE	|永远等待|
+|LW_OPTION_WAIT_A_TICK	    |等待一个时钟嘀嗒|
+|LW_OPTION_WAIT_A_SECOND	|等待一秒|
+
 plantuml 语法：http://plantuml.sourceforge.net/
 
 PC 上使用 Eclipse 插件 plantuml - http://plantuml.sourceforge.net/updatesite/ 
