@@ -1,11 +1,11 @@
 title: Hello World
 ---
 
-Markdown 编辑器：https://stackedit.io/editor   https://www.zybuluo.com/mdeditor（在线） 
+Markdown 编辑器：mdcharm(http://www.mdcharm.com/)
 
 Markdown 语法：http://wowubuntu.com/markdown/（中文）
 
-github page 博客不支持的 Markdown 编辑器语法有: 注脚、flow 流程图、seq 序列图
+github page 博客不支持的 Markdown 编辑器语法有: 注脚、flow 流程图、seq 序列图。
 
 
 表格语法：
