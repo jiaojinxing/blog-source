@@ -1,4 +1,4 @@
-title: SylixOS线程间通信-线程间通信
+title: SylixOS 线程间通信-线程间通信
 date: 2015-06-25 17:05:21
 tag: 
 - SylixOS 

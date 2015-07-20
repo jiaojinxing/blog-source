@@ -1,4 +1,4 @@
-title: SylixOS线程间通信-SylixOS信号量
+title: SylixOS 线程间通信-SylixOS信号量
 date: 2015-06-25 17:10:03
 tag: 
 - SylixOS 

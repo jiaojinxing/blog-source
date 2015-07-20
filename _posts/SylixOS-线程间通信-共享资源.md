@@ -1,4 +1,4 @@
-title: SylixOS线程间通信-共享资源
+title: SylixOS 线程间通信-共享资源
 date: 2015-06-25 17:00:25
 tag: 
 - SylixOS 
