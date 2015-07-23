@@ -9,12 +9,13 @@ categories: SylixOS
 ##测试目的
 验证 SylixOS 是否发挥 ARMv7A Cache、VFP、NEON、分支预测性能，验证 BSP 是否在内存控制器、CPU 主频设置方面存在不正确的地方。
 
-找出 SylixOS 实时性远优于 Linux 和 RT-Linux，但 Qt 性能测试 [qtperf](https://github.com/jiaojinxing/qtperf "") 不如 Linux 的原因，并提出解决办法。
+找出 SylixOS 实时性远优于 Linux 和 RT-Linux（见《SylixOS实时性测试报告》，但 Qt 性能测试 [qtperf](https://github.com/jiaojinxing/qtperf "") 不如 Linux 的原因，并提出解决办法。
 
-##硬件平台
+##测试环境
+###硬件平台
 硬件平台：飞凌嵌入式 OK335xS
 
-处理器：AM335x(800MHz)
+处理器：AM335x(Cortex-A8, 800MHz)
 
 L1-Cache：32KB I-Cache/32KB D-Cache
 
@@ -22,10 +23,20 @@ L2-Cache：256KB
 
 内存：512MB
 
-##操作系统
+###操作系统
 SylixOS + bspam335x：2015/7/15 
 
-对比测试操作系统 Linux：3.2.0 厂家配套的 
+对比测试操作系统 Linux：3.2.0（厂家配套的）
+
+###编译器
+Linux：
+
+arm-arago-linux-gnueabi-gcc： gcc version 4.5.3 20110311 (prerelease) (GCC)（厂家配套的）
+ 
+SylixOS：
+
+arm-sylixos-eabi-gcc: gcc version 4.9.3 20150303 (release) [ARM/embedded-4_9-branch revision 221220] (
+SylixOS Toolchain for ARM Embedded Processors) 
 
 ##测试软件
 [nbench](http://www.tux.org/~mayer/linux/bmark.html "") 是一个简单的用于测试处理器、存储器性能的基准测试程序，即著名的 BYTE Magazine 杂志的 BYTEmark benchmark program。
@@ -59,16 +70,6 @@ LU Decomposition - A robust algorithm for solving linear equations.
 ```
 
 使用版本：2.2.3
-
-##编译器
-Linux：
-
-arm-arago-linux-gnueabi-gcc： gcc version 4.5.3 20110311 (prerelease) (GCC) 
- 
-SylixOS：
-
-arm-sylixos-eabi-gcc: gcc version 4.9.3 20150303 (release) [ARM/embedded-4_9-branch revision 221220] (
-SylixOS Toolchain for ARM Embedded Processors) 
 
 ##Linux测试结果
 
@@ -479,8 +480,8 @@ Baseline (LINUX)    : AMD K6/233*, 512 KB L2-cache, gcc 2.7.2.3, libc-5.4.38
 
 SylixOS 的 INTEGER INDEX （定点处理性能）与 FLOATING-POINT INDEX （浮点处理性能）要优于 Linux，而 MEMORY INDEX （内存性能）要低于 Linux。
 
-**另外：使用 -mfpu=neon 编译选项不见得比 -mfpu=vfpv3 要好，频繁地切换 ARM/NEON 指令集反而会使性能有所损耗。
-在 cortex-a8 处理器上 NEON 单元是强制的，但在 cortex-a9 处理器上 NEON 单元却是可选的，使用 -mcpu=cortex-a8 -mfpu=vfpv3 -O3 编译选项可以获得最优化性能和兼容性。
+**值得注意：使用 -mfpu=neon 编译选项不见得比 -mfpu=vfpv3 要好，频繁地切换 ARM/NEON 指令集反而会使性能有所损耗。
+在 Cortex-A8 处理器上 NEON 单元是强制的，但在 Cortex-A9 处理器上 NEON 单元却是可选的，使用 -mcpu=cortex-a8 -mfpu=vfpv3 -O3 编译选项可以获得最优化性能和兼容性。
 当然 -O3 优化可能也会带来一些问题，如果 -O2 优化已经足够，那么建议使用 -O2 优化选项，这也是 SylixOS Release 版本使用的优化选项。**
 
 ##Linux SylixOS 测试结果对比分析
@@ -517,8 +518,6 @@ LU DECOMPOSITION    :          59.127  :       3.06  :       2.21
 SylixOS 在 NUMERIC SORT 测试中小幅落后于 Linux，而 STRING SORT 测试中大幅落后于 Linux，其它测试 SylixOS 均优于 Linux。
 
 MEMORY INDEX （内存性能）低于 Linux 的原故是 STRING SORT 测试中大幅落后于 Linux。
-
-##落后原因分析
 
 STRING SORT 测试是 Sorts an array of strings of arbitrary length，落后的原因可能有三：
 
