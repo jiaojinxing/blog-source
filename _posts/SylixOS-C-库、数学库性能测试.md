@@ -9,7 +9,7 @@ categories: SylixOS
 ##测试目的
 验证 SylixOS 的 C 库和数学库的某些函数是否存在性能问题。
 
-找出 SylixOS 实时性远优于 Linux 和 RT-Linux（见《SylixOS实时性测试报告》，和 SylixOS 在 ARMv7A 性能优于 Linux （见[《SylixOS ARMv7A 处理器性能测试与改进》](http://jiaojinxing.github.io/2015/07/17/SylixOS-ARMv7A-%E5%A4%84%E7%90%86%E5%99%A8%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E4%B8%8E%E6%94%B9%E8%BF%9B/ "")），但 Qt 性能测试 [qtperf](https://github.com/jiaojinxing/qtperf "") 中部分项目不如 Linux 的原因，并提出解决办法。
+找出 SylixOS 实时性远优于 Linux 和 Linux+RT（见《SylixOS实时性测评报告》，和 SylixOS 在 ARMv7A 性能优于 Linux （见[《SylixOS ARMv7A 处理器性能测试与改进》](http://jiaojinxing.github.io/2015/07/17/SylixOS-ARMv7A-%E5%A4%84%E7%90%86%E5%99%A8%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E4%B8%8E%E6%94%B9%E8%BF%9B/ "")），但 Qt 性能测试 [qtperf](https://github.com/jiaojinxing/qtperf "") 中部分项目不如 Linux 的原因，并提出解决办法。
 
 ##测试环境
 ###硬件平台
@@ -73,7 +73,7 @@ Linux 与 SylixOS 字符串类函数性能测试结果对比放在 https://githu
 
 ##SylixOS 的 C 库优化
 
-规划中，暂略。
+根据 Linux 与 SylixOS 字符串类函数性能测试结果对比，找出 SylixOS 中有性能缺陷的字符串类函数，从 glibc-2.21 或 Android 的 bionic C 库中提取并替换原有的。
 
 ##SylixOS 内存分配算法优化
 

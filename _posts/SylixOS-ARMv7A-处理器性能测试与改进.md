@@ -9,7 +9,7 @@ categories: SylixOS
 ##测试目的
 验证 SylixOS 是否发挥 ARMv7A Cache、VFP、NEON、分支预测性能，验证 BSP 是否在内存控制器、CPU 主频设置方面存在不正确的地方。
 
-找出 SylixOS 实时性远优于 Linux 和 RT-Linux（见《SylixOS实时性测试报告》，但 Qt 性能测试 [qtperf](https://github.com/jiaojinxing/qtperf "") 不如 Linux 的原因，并提出解决办法。
+找出 SylixOS 实时性远优于 Linux 和 Linux+RT（见《SylixOS实时性测评报告》，但 Qt 性能测试 [qtperf](https://github.com/jiaojinxing/qtperf "") 不如 Linux 的原因，并提出解决办法。
 
 ##测试环境
 ###硬件平台
