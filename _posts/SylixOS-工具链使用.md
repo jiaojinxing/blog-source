@@ -1,8 +1,7 @@
-title: 程序员的自我修养-工具链使用
+title: SylixOS-工具链使用
 date: 2015-06-26 11:44:21
 tag: 
 - SylixOS 
-- 程序员的自我修养
 categories: 
 - SylixOS 
 ---
@@ -101,7 +100,7 @@ arm-sylixos-eabi-cpp  -DSYLIXOS -I"D:\workspace\SylixOS_Base/libsylixos/SylixOS"
 
 纯C编译步骤实验命令：
 ```
-D:\ZTHSOFT\arm-sylixos-toolchain\lib\gcc\arm-sylixos-eabi\4.9.3\cc1.exe -mcpu=arm920t -O0 -g3 -gdwarf-2 -Wall -fmessage-length=0 -fsigned-char -fno-short-enums -fPIC sample_cpp.c -o sample.s
+D:\ACOINFO\arm-sylixos-toolchain\lib\gcc\arm-sylixos-eabi\4.9.3\cc1.exe -mcpu=arm920t -O0 -g3 -gdwarf-2 -Wall -fmessage-length=0 -fsigned-char -fno-short-enums -fPIC sample_cpp.c -o sample.s
 ```
 
 汇编步骤实验命令：
@@ -111,7 +110,7 @@ arm-sylixos-eabi-as -mcpu=arm920t -c sample.s -o sample.o
 
 链接步骤实验命令：
 ```
-arm-sylixos-eabi-ld  -nostdlib -fPIC -shared -o sample sample.o -L"D:\workspace\SylixOS_Base/libsylixos/Debug" -L"D:\ZTHSOFT\arm-sylixos-toolchain\arm-sylixos-eabi\lib" -L"D:\ZTHSOFT\arm-sylixos-toolchain\lib\gcc\arm-sylixos-eabi\4.9.3" -lvpmpdm -lm -lgcc
+arm-sylixos-eabi-ld  -nostdlib -fPIC -shared -o sample sample.o -L"D:\workspace\SylixOS_Base/libsylixos/Debug" -L"D:\ACOINFO\arm-sylixos-toolchain\arm-sylixos-eabi\lib" -L"D:\ACOINFO\arm-sylixos-toolchain\lib\gcc\arm-sylixos-eabi\4.9.3" -lvpmpdm -lm -lgcc
 ```
 
 ##可执行文件的段##
@@ -242,7 +241,7 @@ digraph G {
 
 链接步骤实验命令：
 ```
-arm-sylixos-eabi-ld  -nostdlib -fPIC -shared -o sample sample.o -L"D:\workspace\SylixOS_Base/libsylixos/Debug" -L"D:\ZTHSOFT\arm-sylixos-toolchain\arm-sylixos-eabi\lib" -L"D:\ZTHSOFT\arm-sylixos-toolchain\lib\gcc\arm-sylixos-eabi\4.9.3" -lvpmpdm -lm -lgcc
+arm-sylixos-eabi-ld  -nostdlib -fPIC -shared -o sample sample.o -L"D:\workspace\SylixOS_Base/libsylixos/Debug" -L"D:\ACOINFO\arm-sylixos-toolchain\arm-sylixos-eabi\lib" -L"D:\ACOINFO\arm-sylixos-toolchain\lib\gcc\arm-sylixos-eabi\4.9.3" -lvpmpdm -lm -lgcc
 ```
 
 链接可执行文件sample时链接了三个库：libvpmpdm、libm、libgcc。
